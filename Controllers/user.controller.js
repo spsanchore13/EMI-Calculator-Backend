@@ -46,8 +46,13 @@ const Login = async (req, res) => {
 
 }
 
+const Profile = async (req, res) => {
+    const { userId } = req.body;
+    const user = await UserModel.findOne({ _id: userId })
+    res.send({ name: user.name, email: user.email })
+}
 
 
-const userOperations = { Register, Login }
+const userOperations = { Register, Login, Profile }
 
 module.exports = { userOperations }
